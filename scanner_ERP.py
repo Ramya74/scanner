@@ -6,14 +6,13 @@ import sys
 
 def main_menu():
 	
-	print("1.Scan single host") #nmap ip ex: nmap 192.168.1.1
-	print("2.scan range") # nmap 192.168.1.1-254
-	print("3.Scan network")# nmap 192.168.1.0/24
-	print("4.Agressive scan") # -T4 time   #-A
-	print("5.Scan ARP packet") # nmap ip/mask -PR 
-	# ex: nmap 192.168.1.0/24 -PR
-	print("6.Scan All port only")# -Pn
-	print("7.Scan in verbose mod")# nmap -v
+	print("1.Scan single host") 
+	print("2.scan range") 
+	print("3.Scan network")
+	print("4.Agressive scan") 
+	print("5.Scan ARP packet") 
+	print("6.Scan All port only")
+	print("7.Scan in verbose mod")
 	print("8.Exit")
 while True:
 	main_menu()
@@ -31,7 +30,7 @@ while True:
 	
 	
 		try:
-			scan = nm.scan(hosts=ip,ports="1-100",arguments="-sS -O -v -Pn")
+			scan = nm.scan(hosts=ip,ports="1-1000",arguments="-sS -O -v -Pn")
 			
 			for host in scan["scan"][ip]['tcp'].items():
 				print("Tcp Port :",host[0])
@@ -39,7 +38,7 @@ while True:
 				print("Reason :",host[1]['reason'])
 				print("Name :",host[1]['name'])
 		except:
-			print("Use root priviliege")
+			print("Use root priviliege(sudo)")
 	elif ch == 2:
 		#scan range
 		ip = input("Enter the IP : ")
@@ -47,7 +46,7 @@ while True:
 		
 		try:
 			scan = nm.scan(hosts=ip,arguments="-sS -O -Pn")
-			#print(scan)
+			print(scan)
 			for host in scan["scan"]:
 				print("Ip range :",host)
 		except:
@@ -90,6 +89,7 @@ while True:
 		
 	
 	elif ch == 5:
+		#scan ARP packet
 		ip = input("Enter the IP : ")
 			
 		print("Wait.......................")
@@ -104,6 +104,7 @@ while True:
 		#print(scan)
 		
 	elif ch == 6:
+		#Scan All port only
 		ip = input("Enter the IP : ")
 			
 		print("Wait.......................")
@@ -120,7 +121,7 @@ while True:
 			print("Use root privilige")
 		#print(scan)
 	elif ch == 7:
-	
+		#Scan in verbose mod
 		ip = input("Enter the IP : ")
 			
 		print("Wait.......................")
